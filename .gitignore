@@ -1,0 +1,6 @@
+
+.idea/vcs.xml
+.idea/modules.xml
+*.xml
+.idea/vk-bot.iml
+old_main.py
