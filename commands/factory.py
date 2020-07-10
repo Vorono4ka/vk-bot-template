@@ -1,3 +1,6 @@
+from vk_api.vk_api import VkApiMethod
+
+
 class CommandsFactory:
     def __init__(self):
         self.commands_variations = [
@@ -8,7 +11,7 @@ class CommandsFactory:
 
         }
 
-    def handle_command(self, cmd: str, cmd_payload: str, access_level: int, message):
+    def handle_command(self, vk: VkApiMethod, cmd: str, cmd_payload: str, access_level: int, message):
         command_index = None
         for command in self.commands_variations:
             for variation in command:
@@ -17,11 +20,13 @@ class CommandsFactory:
                     break
 
         if command_index is not None:
-            command = self.commands_classes[command_index]()
+            command = self.commands_classes[command_index](vk)
             if command.access_level <= access_level:
                 return command.process(cmd_payload, message), command.status_code
             else:
                 return False, 3
+        else:
+            return False, 0
 
     def add_command(self, variations: list, command_class):
         self.commands_variations.append(variations)
