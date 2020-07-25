@@ -15,7 +15,7 @@ class CommandsFactory:
         command_index = None
         for command in self.commands_variations:
             for variation in command:
-                if variation == cmd:
+                if variation == cmd.lower():
                     command_index = self.commands_variations.index(command)
                     break
 

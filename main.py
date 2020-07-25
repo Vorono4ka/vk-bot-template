@@ -2,6 +2,7 @@ from vk_api.longpoll import VkEventType, VkLongPoll
 import vk_api
 
 from commands.factory import CommandsFactory
+from commands.receive.Fix import Fix
 from commands.receive.Hello import Hello
 from utils.errors import Errors
 
@@ -75,6 +76,7 @@ class VkBot:
 if __name__ == '__main__':
     bot = VkBot('172da3a0dae9f99545bb712af4bf34faedbcb4f13dadfa10fb1327106d82aecd5c7e5499e71d6c4fa5a70')
 
-    bot.commands_factory.add_command(['hello', 'test', 'привет', 'тест'], Hello)
+    # bot.commands_factory.add_command(['hello', 'test', 'привет', 'тест'], Hello)
+    bot.commands_factory.add_command(['fix', 'фикс'], Fix)
 
     bot.listen()
